@@ -81,6 +81,190 @@ VALUES (dvd_seq.NEXTVAL, 17, 'IN STORE', 'LOVE STORY');
 INSERT INTO dvd (COPY_ID, TITLE_ID, STATUS, TITLE_NAME)
 VALUES (dvd_seq.NEXTVAL, 18, 'IN STORE', 'AIR FORCE ONE');
 
+Question 7:
+CREATE TABLE PlacementScores (
+    StudentID INT,
+    StudentName VARCHAR(50),
+    EnglishScore INT,
+    MathScore INT,
+    ScienceScore INT,
+    SpanishScore INT,
+    ArtScore INT
+);
+
+INSERT ALL
+    INTO PlacementScores (StudentID, StudentName, EnglishScore, MathScore, ScienceScore, SpanishScore, ArtScore) VALUES (1, 'Sarah Smith', 85, 95, 75, 82, 100)
+    INTO PlacementScores (StudentID, StudentName, EnglishScore, MathScore, ScienceScore, SpanishScore, ArtScore) VALUES (2, 'John Mccann', 72, 91, 93, 88, 95)
+    INTO PlacementScores (StudentID, StudentName, EnglishScore, MathScore, ScienceScore, SpanishScore, ArtScore) VALUES (3, 'Aaron James', 86, 88, 80, 78, 100)
+SELECT 1 FROM DUAL;
+
+Question 8
+CREATE TABLE Movies (
+    MovieID INT PRIMARY KEY,
+    Title VARCHAR(255) NOT NULL,
+    Genre VARCHAR(50));
+   
+CREATE TABLE Theaters (
+    TheaterID INT PRIMARY KEY,
+    TheaterName VARCHAR(255) NOT NULL);
+
+CREATE TABLE Showings (
+    ShowingID INT PRIMARY KEY,
+    MovieID INT,
+    TheaterID INT,
+    ShowTime TIMESTAMP,
+    -- Add other relevant showing details
+    FOREIGN KEY (MovieID) REFERENCES Movies(MovieID),
+    FOREIGN KEY (TheaterID) REFERENCES Theaters(TheaterID)
+);
+
+CREATE TABLE Attendance (
+    AttendanceID INT PRIMARY KEY,
+    ShowingID INT,
+    NumberOfAttendees INT,
+        FOREIGN KEY (ShowingID) REFERENCES Showings(ShowingID)
+);
+
+*/ INSERT DATA INTO MOVIES TABLE */
+INSERT INTO Movies (MovieID, Title, Genre) VALUES (1, 'Inception', 'Sci-Fi');
+INSERT INTO Movies (MovieID, Title, Genre) VALUES (2, 'The Shawshank Redemption', 'Drama');
+INSERT INTO Movies (MovieID, Title, Genre) VALUES (3, 'The Dark Knight', 'Action');
+
+*/ INSERT DATA INTO THEATER TABLE */
+INSERT INTO Theaters (TheaterID, TheaterName) VALUES (1, 'Theater 1');
+INSERT INTO Theaters (TheaterID, TheaterName) VALUES (2, 'Theater 2');
+INSERT INTO Theaters (TheaterID, TheaterName) VALUES (3, 'Theater 3');
+
+*/ INSERT DATA INTO SHOWINGS TABLE */
+INSERT INTO Showings (ShowingID, MovieID, TheaterID, ShowTime) VALUES (101, 1, 1, '2023-12-04 15:00:00');
+INSERT INTO Showings (ShowingID, MovieID, TheaterID, ShowTime) VALUES (102, 1, 2, '2023-12-04 18:00:00');
+INSERT INTO Showings (ShowingID, MovieID, TheaterID, ShowTime) VALUES (103, 2, 1, '2023-12-04 14:30:00');
+INSERT INTO Showings (ShowingID, MovieID, TheaterID, ShowTime) VALUES (104, 3, 3, '2023-12-04 20:00:00');
+
+*/ INSERT DATA INTO ATTENDANCE TABLE */
+INSERT INTO Attendance (AttendanceID, ShowingID, NumberOfAttendees) VALUES (1001, 101, 135);
+INSERT INTO Attendance (AttendanceID, ShowingID, NumberOfAttendees) VALUES (1002, 02, 150);
+INSERT INTO Attendance (AttendanceID, ShowingID, NumberOfAttendees) VALUES (1003, 103, 120); 
+INSERT INTO Attendance (AttendanceID, ShowingID, NumberOfAttendees) VALUES (1004, 104, 200);
+
+
+Question 9:
+
+CREATE TABLE Suppliers (
+    SupplierID INT PRIMARY KEY,
+    SupplierName VARCHAR(255) NOT NULL,
+);
+
+INSERT INTO Suppliers (SupplierID, SupplierName) VALUES (1, 'Starbucks ');
+INSERT INTO Suppliers (SupplierID, SupplierName) VALUES (2, 'Petes Coffee');
+INSERT INTO Suppliers (SupplierID, SupplierName) VALUES (3, 'Krispy Coffee');
+
+CREATE TABLE CoffeeFlavors (
+    FlavorID INT PRIMARY KEY,
+    FlavorName VARCHAR(255) NOT NULL,
+    SupplierID INT,
+    FOREIGN KEY (SupplierID) REFERENCES Suppliers(SupplierID)
+);
+
+INSERT INTO CoffeeFlavors (FlavorID, FlavorName, SupplierID) VALUES (101, 'Dark Roast', 1);
+INSERT INTO CoffeeFlavors (FlavorID, FlavorName, SupplierID) VALUES  (102, 'Hazelnut', 2);
+INSERT INTO CoffeeFlavors (FlavorID, FlavorName, SupplierID) VALUES  (103, 'Vanilla Creme', 3);
+INSERT INTO CoffeeFlavors (FlavorID, FlavorName, SupplierID) VALUES  (104, 'Espresso', 1);
+
+CREATE TABLE Customers (
+    CustomerID INT PRIMARY KEY,
+    CustomerName VARCHAR(255) NOT NULL,
+    );
+
+INSERT INTO Customers (CustomerID, CustomerName) VALUES (1001, 'Sally Richards');
+INSERT INTO Customers (CustomerID, CustomerName) VALUES (1002, 'Ren James');
+INSERT INTO Customers (CustomerID, CustomerName) VALUES  (1003, 'Caris Lavert');
+
+CREATE TABLE Orders (
+    OrderID INT PRIMARY KEY,
+    CustomerID INT,
+    FlavorID INT,
+    Quantity INT,
+    FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID),
+    FOREIGN KEY (FlavorID) REFERENCES CoffeeFlavors(FlavorID)
+);
+
+INSERT INTO Orders (OrderID, CustomerID, FlavorID, Quantity) VALUES (2001, 1001, 101, 2);
+INSERT INTO Orders (OrderID, CustomerID, FlavorID, Quantity) VALUES (2002, 1001, 102, 1);
+INSERT INTO Orders (OrderID, CustomerID, FlavorID, Quantity) VALUES (2003, 1002, 103, 3);
+INSERT INTO Orders (OrderID, CustomerID, FlavorID, Quantity) VALUES (2004, 1003, 104, 5);
+
+
+
+Question 10:
+
+
+CREATE TABLE Speakers (
+    SpeakerID INT PRIMARY KEY,
+    SpeakerName VARCHAR(255) NOT NULL,
+   );
+INSERT INTO Speakers (SpeakerID, SpeakerName) VALUES (1, 'John Mathews');
+INSERT INTO Speakers (SpeakerID, SpeakerName) VALUES (2, 'Ren James');
+INSERT INTO Speakers (SpeakerID, SpeakerName) VALUES (3, 'Kitty Jacobs');
+INSERT INTO Speakers (SpeakerID, SpeakerName) VALUES (4, 'Johnson Smith');
+
+CREATE TABLE Sessions (
+    SessionID INT PRIMARY KEY,
+    SessionTitle VARCHAR(255) NOT NULL,
+    StartTime DATETIME,
+    SpeakerID INT,
+    FOREIGN KEY (SpeakerID) REFERENCES Speakers(SpeakerID)
+);
+INSERT INTO Sessions (SessionID, SessionTitle, StartTime, SpeakerID) VALUES 
+(101, 'Introduction to Machine Learning', '2023-12-07 10:00:00', 1);
+
+INSERT INTO Sessions (SessionID, SessionTitle, StartTime, SpeakerID) VALUES
+(102, 'Cybersecurity Best Practices', '2023-12-05 14:00:00', 2);
+
+INSERT INTO Sessions (SessionID, SessionTitle, StartTime, SpeakerID) VALUES
+(103, 'Cloud Computing Trends', '2023-12-05 09:30:00', 3);
+
+INSERT INTO Sessions (SessionID, SessionTitle, StartTime, SpeakerID) VALUES
+(104, 'Web Development Workshop', '2023-12-07 13:00:00', 1);
+
+CREATE TABLE Attendees (
+    AttendeeID INT PRIMARY KEY,
+    AttendeeName VARCHAR(255) NOT NULL,
+    );
+INSERT INTO Attendees (AttendeeID, AttendeeName) VALUES
+(1001, 'Obi Toppin');
+
+INSERT INTO Attendees (AttendeeID, AttendeeName) VALUES
+(1002, 'Alice White');
+
+INSERT INTO Attendees (AttendeeID, AttendeeName) VALUES
+(1003, 'James Adams');
+
+INSERT INTO Attendees (AttendeeID, AttendeeName) VALUES
+(1004, 'David Smith');
+
+CREATE TABLE Registrations (
+    RegistrationID INT PRIMARY KEY,
+    AttendeeID INT,
+    SessionID INT,
+    FOREIGN KEY (AttendeeID) REFERENCES Attendees(AttendeeID),
+    FOREIGN KEY (SessionID) REFERENCES Sessions(SessionID)
+);
+
+INSERT INTO Registrations (RegistrationID, AttendeeID, SessionID) VALUES
+(2001, 1001, 101);
+
+INSERT INTO Registrations (RegistrationID, AttendeeID, SessionID) VALUES
+(2002, 1002, 103);
+
+INSERT INTO Registrations (RegistrationID, AttendeeID, SessionID) VALUES
+(2003, 1002, 104);
+
+INSERT INTO Registrations (RegistrationID, AttendeeID, SessionID) VALUES
+(2004, 1004, 101);
+
+
+
 
 
 
