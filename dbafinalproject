@@ -25,8 +25,8 @@ Question 5:
 
 
 CREATE SEQUENCE member_seq
-    START WITH 110  -- Start the sequence with the value 110
-    INCREMENT BY 1; -- Increment the sequence by 1
+    START WITH 110  
+    INCREMENT BY 1; 
 
 
 INSERT INTO member (MEMBER_ID, FIRST_NAME, LAST_NAME, STREET, CITY, PHONE, VALID_DATE, BALANCE)
@@ -39,8 +39,8 @@ Question 6:
 
 
 CREATE SEQUENCE dvd_seq
-    START WITH 1000  -- Start the sequence with the value 1000
-    INCREMENT BY 1; -- Increment the sequence by 1
+    START WITH 1000  
+    INCREMENT BY 1; 
 
 INSERT INTO dvd (COPY_ID, TITLE_ID, STATUS, TITLE_NAME)
 VALUES (dvd_seq.NEXTVAL, 10, 'IN STORE', 'DANCE WITH WOLF');
