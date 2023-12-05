@@ -1,3 +1,25 @@
+Question 1:
+
+CREATE TABLE member (
+    member_ID NUMBER(4,0) PRIMARY KEY NOT NULL,
+    first_name VARCHAR2(25) NOT NULL,
+    last_name VARCHAR2(25) NOT NULL,
+    street VARCHAR2(25) NOT NULL,
+    city VARCHAR2(15) NOT NULL,
+    phone CHAR(11) NOT NULL,
+    valid_date DATE NOT NULL,
+    balance NUMBER NOT NULL
+);
+
+Question 2:
+
+CREATE TABLE dvd (
+    dvd_ID NUMBER(4,0) PRIMARY KEY NOT NULL,
+    title_ID NUMBER(3,0) NOT NULL,
+    title VARCHAR2(20) NOT NULL,
+    status VARCHAR2(10) NOT NULL
+);
+
 QUestion 3:
 
 CREATE TABLE rental (
